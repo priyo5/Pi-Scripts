@@ -2,8 +2,6 @@
 
 #install autohotspot from raspberrypiconnect.com
 #http://www.raspberryconnect.com/network/item/330-raspberry-pi-auto-wifi-hotspot-switch-internet
-#This version will provide internet when using the hotspot IF an ethernet cable is plugged in"
-#This will be useful with AREDN mesh networking
 #This script is for Buster ONLY
 #Stretch users should use https://github.com/priyo5/Pi-Scripts/edit/master/autoHotspot
 #priyo5 20200806
@@ -121,17 +119,17 @@ chmod +x /usr/bin/autohotspotN
 
 #homewifi function
 homewifi () {
-#get home wifi credentials
+#get your wifi credentials
 echo "What wifi SSID would you like to connect to?"
 echo "This is the one already in your shack"
-read homewifi
+read ssid
 echo "What is the password for this wifi?"
-read homepass
+read pass
 
 echo;echo;
 echo "Your homes current wifi is"
-echo "wifi $homewifi"
-echo "passwd $homepass"
+echo "wifi $ssid"
+echo "passwd $pass"
 echo "Is this correct? y/n"
 read ans
 if [ $ans == "y" ] || [ $ans == "Y" ]
