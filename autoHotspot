@@ -2,8 +2,6 @@
 
 #install autohotspot from raspberrypiconnect.com
 #http://www.raspberryconnect.com/network/item/330-raspberry-pi-auto-wifi-hotspot-switch-internet
-#This version will provide internet when using the hotspot IF an ethernet cable is plugged in"
-#This will be useful with AREDN mesh networking
 #priyo5 20200806
 #priyo5 20200806 last edit
 
@@ -26,8 +24,8 @@ then
 echo ""
 else
 wget https://raw.githubusercontent.com/priyo5/Pi-Scripts/master/autoHotspot-Buster
-chmod +x autohotspot-buster
-./autohotspot-buster
+chmod +x autoHotspot-Buster
+./autoHotspot-Buster
 rm autohotspot-setup
 exit 0
 fi
@@ -131,30 +129,30 @@ fi
 cd $HOME/temp
 wget http://www.raspberryconnect.com/images/autohotspotN/autohotspotn-95-4/autohotspotN.txt
 #mod ip address for our custom setup
-sed -i 's/192.168.50.5/10.10.10.10/' autohotspotN.txt
-mv autohotspotN.txt /usr/bin/autohotspotN
-chmod +x /usr/bin/autohotspotN
+sed -i 's/192.168.50.5/10.10.10.10/' autohotspot.txt
+mv autohotspot.txt /usr/bin/autohotspot
+chmod +x /usr/bin/autohotspot
 
 #homewifi function
 homewifi () {
-#get my wifi credentials
+#get your wifi credentials
 echo "What wifi SSID would you like to connect to?"
 echo "This is the one already in your home"
-read shackwifi
+read ssid
 echo "What is the password for this wifi?"
-read shackpass
+read pass
 
 echo;echo;
 echo "Your homes current wifi is"
-echo "wifi $shackwifi"
-echo "passwd $shackpass"
+echo "wifi $ssid"
+echo "passwd $pass"
 echo "Is this correct? y/n"
-read shackans
-if [ $shackans == "y" ]
+read ans
+if [ $ans == "y" ]
 then
 echo
 else
-shackwifi1
+homewifi
 fi
 }
 
