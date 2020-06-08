@@ -4,8 +4,8 @@
 #http://www.raspberryconnect.com/network/item/330-raspberry-pi-auto-wifi-hotspot-switch-internet
 #This version will provide internet when using the hotspot IF an ethernet cable is plugged in"
 #This will be useful with AREDN mesh networking
-#km4ack 20190409
-#km4ack 20191006 last edit
+#priyo5 20200806
+#priyo5 20200806 last edit
 
 #check if run as root
 who=$(whoami)
@@ -14,7 +14,7 @@ then
 echo ""
 else
 echo "Script should be run as root"
-echo "sudo autohotspotN-setup"
+echo "sudo autohotspot-setup"
 fi
 
 #check if running buster
@@ -28,7 +28,7 @@ else
 wget https://raw.githubusercontent.com/km4ack/pi-scripts/master/autohotspot-buster
 chmod +x autohotspot-buster
 ./autohotspot-buster
-rm autohotspotN-setup
+rm autohotspot-setup
 exit 0
 fi
 
@@ -49,7 +49,7 @@ wifipass () {
 echo;echo;echo
 echo "This password will be used to connect to the pi"
 echo "when the pi is in hotspot mode"
-#credit next line to Ray, N3HYM
+
 echo "Password should be between 8-63 characters"
 read -p "Enter password to use with new hotspot " wifipasswd
 COUNT=${#wifipasswd}
@@ -135,17 +135,17 @@ sed -i 's/192.168.50.5/10.10.10.10/' autohotspotN.txt
 mv autohotspotN.txt /usr/bin/autohotspotN
 chmod +x /usr/bin/autohotspotN
 
-#shackwifi function
-shackwifi1 () {
-#get ham's wifi credentials
+#homewifi function
+homewifi () {
+#get my wifi credentials
 echo "What wifi SSID would you like to connect to?"
-echo "This is the one already in your shack"
+echo "This is the one already in your home"
 read shackwifi
 echo "What is the password for this wifi?"
 read shackpass
 
 echo;echo;
-echo "Your shack's current wifi is"
+echo "Your homes current wifi is"
 echo "wifi $shackwifi"
 echo "passwd $shackpass"
 echo "Is this correct? y/n"
@@ -158,10 +158,10 @@ shackwifi1
 fi
 }
 
-#run shackwifi function
-shackwifi1
+#run homewifi function
+homewifi 
 
-#add shack wifi to wpa_supplicant.conf
+#add home wifi to wpa_supplicant.conf
 echo "network={" >> /etc/wpa_supplicant/wpa_supplicant.conf
 echo "ssid=\"$shackwifi\"" >> /etc/wpa_supplicant/wpa_supplicant.conf
 echo "psk=\"$shackpass\"" >> /etc/wpa_supplicant/wpa_supplicant.conf
