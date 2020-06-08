@@ -25,7 +25,7 @@ if [ -z "$BUSTER" ]
 then
 echo ""
 else
-wget https://raw.githubusercontent.com/km4ack/pi-scripts/master/autohotspot-buster
+wget https://raw.githubusercontent.com/priyo5/Pi-Scripts/master/autoHotspot-Buster
 chmod +x autohotspot-buster
 ./autohotspot-buster
 rm autohotspot-setup
